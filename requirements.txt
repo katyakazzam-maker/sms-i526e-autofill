@@ -1,4 +1,9 @@
 flask
-pypdf
 anthropic
+pypdf
+pymupdf
+Pillow
+img2pdf
+pdfplumber
 gunicorn
+python-docx
