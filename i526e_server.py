@@ -148,24 +148,24 @@ HTML = """<!DOCTYPE html>
     <div class="card">
       <div class="card-title">Step 1 — Biographical Intake Form</div>
       <div class="card-desc">Upload the completed SMS Law intake form (same one used for I-485).</div>
-      <input type="file" id="fileInput" accept=".pdf" style="display:none;">
-      <label for="fileInput" class="drop-zone" id="dropZone">
+      <div class="drop-zone" id="dropZone">
         <span class="drop-icon">📄</span>
         <h3>Click to browse · PDF only</h3>
         <p>or drag and drop here</p>
-      </label>
+      </div>
+      <input type="file" id="fileInput" accept=".pdf" style="display:none;">
       <div class="file-selected" id="fileSelected"><span>✅</span><span id="fileName"></span></div>
     </div>
 
     <div class="card" style="padding:32px 48px;">
       <div class="card-title" style="font-size:16px;">Step 2 — Project Documents</div>
       <div class="card-desc">Upload subscription agreement, wire confirmation, admin fee waiver, declarations, and any other project documents from the Regional Center. AI will extract NCE info, investment amounts, and capital sources from these.</div>
-      <input type="file" id="docsInput" accept=".pdf,.jpg,.jpeg,.png,.docx" multiple style="display:none;">
-      <label for="docsInput" class="drop-zone" id="docsDropZone" style="padding:24px;">
+      <div class="drop-zone" id="docsDropZone" style="padding:24px;">
         <span class="drop-icon" style="font-size:28px;">📎</span>
         <h3 style="font-size:14px;">Click to browse</h3>
         <p>PDF, JPG, PNG, DOCX · Multiple files OK</p>
-      </label>
+      </div>
+      <input type="file" id="docsInput" accept=".pdf,.jpg,.jpeg,.png,.docx" multiple style="display:none;">
       <div id="docsList" style="margin-top:12px;"></div>
     </div>
 
@@ -230,6 +230,8 @@ const docsInput = document.getElementById('docsInput');
 const dropZone = document.getElementById('dropZone');
 const docsDropZone = document.getElementById('docsDropZone');
 
+dropZone.addEventListener('click', () => fileInput.click());
+docsDropZone.addEventListener('click', () => docsInput.click());
 fileInput.addEventListener('change', e => { if (e.target.files[0]) showIntakeFile(e.target.files[0]); });
 docsInput.addEventListener('change', e => addDocFiles(e.target.files));
 
