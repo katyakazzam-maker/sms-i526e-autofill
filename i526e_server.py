@@ -170,7 +170,7 @@ HTML = """<!DOCTYPE html>
     </div>
 
     <button class="btn" id="submitBtn" onclick="startProcessing()" disabled>
-      Extract & Review \u2192
+      Extract &amp; Review &#x2192;
     </button>
   </div>
 
@@ -315,7 +315,7 @@ async function pollStatus() {
   } catch(e) {}
 }
 
-const ATTORNEY_PROFILES = {{ attorney_profiles_json }};
+const ATTORNEY_PROFILES = {{ attorney_profiles_json | safe }};
 
 const REVIEW_SECTIONS = [
   { label: "Preparing Attorney", fields: [
