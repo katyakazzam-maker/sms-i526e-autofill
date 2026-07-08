@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: sms-i526e-autofill
+    runtime: python
+    buildCommand: "apt-get install -y poppler-utils && pip install -r requirements.txt"
+    startCommand: "gunicorn i526e_server:app"
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.0
