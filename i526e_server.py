@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
-VERSION   = "1.0.0"
+VERSION   = "1.0.1"
 MODEL     = "claude-sonnet-4-6"   # centralized — change only here on deprecation
 BASE_DIR  = Path(__file__).parent
 UPLOAD_DIR = BASE_DIR / "uploads"
@@ -673,7 +673,7 @@ def run_job(job_id, intake_path, doc_paths):
                     return fp.name, result.stdout or "[Could not read docx]"
                 else:  # PDF
                     doc = _fitz.open(str(fp))
-                    mat = _fitz.Matrix(150/72, 150/72)
+                    mat = _fitz.Matrix(100/72, 100/72)
                     def ocr_page(pg):
                         pix = pg.get_pixmap(matrix=mat, alpha=False)
                         b64 = base64.b64encode(io.BytesIO(pix.tobytes("png")).getvalue()).decode()
@@ -1038,7 +1038,7 @@ country_of_current_residence, country_of_last_lpr_abroad"""
             except Exception: font = ImageFont.load_default()
 
         doc = _fitz.open(str(I526E_PDF))
-        mat = _fitz.Matrix(100/72, 100/72)
+        mat = _fitz.Matrix(150/72, 150/72)
         pngs = []
 
         for pg in doc:
