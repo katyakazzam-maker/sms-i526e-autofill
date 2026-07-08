@@ -170,7 +170,7 @@ HTML = """<!DOCTYPE html>
     </div>
 
     <button class="btn" id="submitBtn" onclick="startProcessing()" disabled>
-      Extract &amp; Review →
+      Extract & Review \u2192
     </button>
   </div>
 
@@ -239,12 +239,12 @@ docsInput.addEventListener('change', e => addDocFiles(e.target.files));
   [dropZone, docsDropZone].forEach(el => {
     el.addEventListener(ev, e => {
       e.preventDefault();
-      if (ev === 'dragover') el.classList.add('drag-over');
-      else el.classList.remove('drag-over');
+      if (ev === 'dragover') { el.classList.add('drag-over'); }
+      else { el.classList.remove('drag-over'); }
       if (ev === 'drop') {
         const files = e.dataTransfer.files;
-        if (el === dropZone && files[0]) { showIntakeFile(files[0]); }
-        else if (el === docsDropZone) addDocFiles(files);
+        if (el === dropZone) { if (files[0]) showIntakeFile(files[0]); }
+        else { addDocFiles(files); }
       }
     });
   });
